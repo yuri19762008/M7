@@ -21,8 +21,6 @@ class ProductoListView(ListView):
             context['productos_por_fabricante'][fabricante] = fabricante.productos.all()
         return context
 
-
-
 class ProductoUpdateView(UpdateView):
     model = Producto
     fields = ['nombre', 'descripcion', 'precio', 'fabricante']
@@ -33,8 +31,6 @@ class ProductoUpdateView(UpdateView):
         form.save()
         return super().form_valid(form)
 
-        
-    
 class ProductoDeleteView(DeleteView):
     model = Producto
     template_name = 'productos/producto_confirm_delete.html'
@@ -42,21 +38,11 @@ class ProductoDeleteView(DeleteView):
 
 class ProductoCreateView(CreateView):
     model = Producto
-    form_class = ProductoForm
+    fields = ['nombre', 'descripcion', 'precio', 'fabricante']
     template_name = 'productos/producto_form.html'
     success_url = reverse_lazy('producto-list')
-    
-    def home(request):
-        if request.method == 'POST':
-            form = ProductoForm(request.POST)
-            if form.is_valid():
-                form.save()
-            return redirect('index')
-        else:
-            form = ProductoForm()
-            productos = Producto.objects.all()
-            return render(request, 'index.html', {'form': form, 'productos': productos})
 
     def form_valid(self, form):
+        response = super().form_valid(form)
         messages.success(self.request, 'Producto creado exitosamente')
-        return super().form_valid(form)
+        return response
