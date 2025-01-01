@@ -9,3 +9,4 @@ class ProductoAdmin(admin.ModelAdmin):
     list_filter = ('precio','fabricante')
     search_fields = ('nombre', 'descripcion')
     ordering = ('id',)
+
