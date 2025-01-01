@@ -1,86 +1,78 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block content %}
 <div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Productos por Fabricante</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Productos por Fabricante</h1>
+        <a href="{% url 'producto-create' %}" class="btn btn-secondary">
+            <i class="fas fa-plus"></i> Agregar Producto
+        </a>
+    </div>
 
-    <a href="{% url 'producto-create' %}" class="btn btn-secondary">
-        <i class="fas fa-plus"></i> Agregar Producto
-    </a>
-  </div>
-  
-  {% for fabricante, productos in productos_por_fabricante.items %}
+    {% for fabricante, productos in productos_por_fabricante.items %}
     <div class="card mb-4">
-      <div class="card-header bg-success text-white">
-        <h3>{{ fabricante.nombre }}</h3>
-      </div>
-      <div class="card-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Descripción</th>
-              <th>Precio</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for producto in productos %}
-                <tr>
-                  <td>{{ producto.nombre }}</td>
-                  <td>{{ producto.descripcion }}</td>
-                  <td>${{ producto.precio }}</td>
-                  <td>
-                    <a
-                      href="{% url 'producto_update' producto.id %}" class="btn btn-warning btn-sm">Editar
-                    </a>
-                    <button
-                      type="button"class="btn btn-danger btn-sm" data-bs-toggle="modal"data-bs-target="#deleteModal{{ producto.id }}">Eliminar
-                    </button>
-                  </td>
-                </tr>
-              <div class="modal fade" id="deleteModal{{ producto.id }}" tabindex="-1" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Confirmar Eliminación</h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    ¿Está seguro que desea eliminar el producto "{{ producto.nombre }}"?
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Cancelar
-                    </button>
-                    <form
-                      action="{% url 'producto_eliminar' producto.id %}"
-                      method="POST"
-                      style="display: inline"
-                    >
-                      {% csrf_token %}
-                      <button type="submit" class="btn btn-danger">
-                        Eliminar
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
+        <div class="card-header bg-success text-white">
+            <h3>{{ fabricante.nombre }}</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Fabricante</th>
+                            <th>Fecha Vencimiento</th>
+                            <th>País</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos %}
+                        <tr>
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.descripcion }}</td>
+                            <td>${{ producto.precio }}</td>
+                            <td>{{ producto.fabricante.nombre }}</td>
+                            <td>{{ producto.f_vencimiento|date:"d/m/Y" }}</td>
+                            <td>{{ producto.pais|default:"-" }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="{% url 'producto_update' producto.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ producto.id }}">
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Modal de confirmación de eliminación -->
+                        <div class="modal fade" id="deleteModal{{ producto.id }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Confirmar Eliminación</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Está seguro que desea eliminar el producto "{{ producto.nombre }}"?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        <form action="{% url 'producto_eliminar' producto.id %}" method="POST" style="display: inline">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
-          {% endfor %}
-          </tbody>
-        </table>
-      </div>
+        </div>
     </div>
     {% endfor %}
-  </div>
+</div>
 {% endblock %}

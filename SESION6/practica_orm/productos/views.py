@@ -23,7 +23,7 @@ class ProductoListView(ListView):
 
 class ProductoUpdateView(UpdateView):
     model = Producto
-    fields = ['nombre', 'descripcion', 'precio', 'fabricante']
+    fields = ['nombre', 'descripcion', 'precio', 'fabricante', 'f_vencimiento', 'pais']
     template_name = 'productos/producto_form.html'
     success_url = reverse_lazy('producto-list')
 
@@ -38,7 +38,7 @@ class ProductoDeleteView(DeleteView):
 
 class ProductoCreateView(CreateView):
     model = Producto
-    fields = ['nombre', 'descripcion', 'precio', 'fabricante']
+    fields = ['nombre', 'descripcion', 'precio', 'fabricante', 'f_vencimiento', 'pais']
     template_name = 'productos/producto_form.html'
     success_url = reverse_lazy('producto-list')
 

@@ -1,37 +1,79 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    {% if form.instance.pk %}Editar{% else %}Nuevo{% endif %} Producto
+{% endblock %}
+
 {% block content %}
-<div class="card shadow">
+<div class="card shadow-sm">
     <div class="card-header bg-success text-white">
-        <h3 class="card-title mb-0">{% if form.instance.pk %}Editar{% else %}Nuevo{% endif %} Producto</h3>
+        <h2 class="mb-0">
+            <i class="fas {% if form.instance.pk %}fa-edit{% else %}fa-plus{% endif %}"></i>
+            {% if form.instance.pk %}Editar{% else %}Nuevo{% endif %} Producto
+        </h2>
     </div>
-    <div class="card shadow">
-        <div class="card-body">
-            <form method="post">
-                {% csrf_token %}
-                <div class="mb-3">
-                    <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre</label>
-                    {{ form.nombre }}
-                </div>
-                <div class="mb-3">
-                    <label for="{{ form.descripcion.id_for_label }}" class="form-label">Descripción</label>
-                    {{ form.descripcion }}
-                </div>
-                <div class="mb-3">
-                    <label for="{{ form.precio.id_for_label }}" class="form-label">Precio</label>
-                    {{ form.precio }}
-                </div>
-                <div class="mb-3">
-                    <label for="{{ form.fabricante.id_for_label }}" class="form-label">Fabricante</label>
-                    {{ form.fabricante }}
-                </div>
-                <div class="d-flex justify-content-end gap-2">
-                    <a href="{% url 'producto-list' %}" class="btn btn-secondary">Cancelar</a>
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                </div>
-            </form>
-        </div>
+    <div class="card-body">
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="id_nombre" class="form-label">Nombre *</label>
+                {{ form.nombre }}
+                {% if form.nombre.errors %}
+                    <div class="invalid-feedback d-block">{{ form.nombre.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                <label for="id_descripcion" class="form-label">Descripción *</label>
+                {{ form.descripcion }}
+                {% if form.descripcion.errors %}
+                    <div class="invalid-feedback d-block">{{ form.descripcion.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                <label for="id_precio" class="form-label">Precio *</label>
+                {{ form.precio }}
+                {% if form.precio.errors %}
+                    <div class="invalid-feedback d-block">{{ form.precio.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                <label for="id_fabricante" class="form-label">Fabricante *</label>
+                {{ form.fabricante }}
+                {% if form.fabricante.errors %}
+                    <div class="invalid-feedback d-block">{{ form.fabricante.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                <label for="id_pais" class="form-label">País *</label>
+                {{ form.pais }}
+                {% if form.pais.errors %}
+                    <div class="invalid-feedback d-block">{{ form.pais.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                <label for="id_f_vencimiento" class="form-label">Fecha de Vencimiento *</label>
+                    <input type="date" 
+                        name="f_vencimiento" 
+                        id="id_f_vencimiento" 
+                        class="form-control" 
+                        value="{{ form.instance.f_vencimiento|date:'Y-m-d' }}"
+                        required>
+                {% if form.f_vencimiento.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ form.f_vencimiento.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="d-flex justify-content-end gap-2">
+                <a href="{% url 'producto-list' %}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Cancelar
+                </a>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save"></i> Guardar Cambios
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}
-
