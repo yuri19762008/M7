@@ -5,7 +5,7 @@ from .models import Producto
 
 @admin.register(Producto)
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre', 'descripcion', 'precio', 'fabricante')
-    list_filter = ('precio',)
+    list_display = ('id', 'nombre', 'descripcion', 'precio', 'fabricante','pais', 'f_vencimiento')
+    list_filter = ('precio','fabricante')
     search_fields = ('nombre', 'descripcion')
     ordering = ('id',)
