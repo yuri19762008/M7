@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <h2>Sesión Finalizada</h2>
+        </div>
+        <div class="card-body">
+            <p>Has cerrado sesión exitosamente.</p>
+            <a href="{% url 'login' %}" class="btn btn-success">Iniciar Sesión Nuevamente</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
