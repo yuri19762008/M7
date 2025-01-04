@@ -1,6 +1,9 @@
 from django import forms
 from .models import Producto, Fabricante
 
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
+
 class ProductoForm(forms.ModelForm):
     # El campo país debe estar fuera de Meta
     pais = forms.CharField(
@@ -90,3 +93,14 @@ class ProductoForm(forms.ModelForm):
             fabricante.save()
             producto.save()
         return producto
+    
+
+# Formulario para crear un nuevo usuario
+class RegisterForm(UserCreationForm):
+    nombre = forms.CharField(max_length=100)
+    email = forms.EmailField(required=True)
+    
+    class Meta:
+        model = get_user_model()
+        fields = ['username', 'email', 'password1', 'password2']
+

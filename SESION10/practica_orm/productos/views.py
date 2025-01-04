@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Producto , Fabricante
-from .forms import ProductoForm
+from .forms import ProductoForm, RegisterForm
 from django.db.models import Q
 from django.contrib import messages
 
@@ -46,3 +46,13 @@ class ProductoCreateView(CreateView):
         response = super().form_valid(form)
         messages.success(self.request, 'Producto creado exitosamente')
         return response
+
+
+class RegisterView(CreateView):
+    form_class = RegisterForm
+    template_name = 'productos/registro.html'
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Registro exitoso. Por favor inicia sesión.')
+        return super().form_valid(form)
