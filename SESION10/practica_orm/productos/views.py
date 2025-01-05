@@ -50,7 +50,7 @@ class ProductoCreateView(CreateView):
 
 class RegisterView(CreateView):
     form_class = RegisterForm
-    template_name = 'productos/registro.html'
+    template_name = 'registration/registro.html'
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
