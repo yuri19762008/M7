@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+  <h1>Posts</h1>
+
+  <div class="my-5">
+    <a href="agregar/" class="btn btn-sm btn-success">Agregar</a>
+  </div>
+    
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Slug</th>
+            <th scope="col">Content</th>
+            <th scope="col">Created_on</th>
+            <th scope="col">Author</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in posts %}
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.slug }}</td>
+            <td>{{ item.content }}</td>
+            <td>{{ item.created_on }}</td>
+            <td>{{ item.author }}</td>
+            <td>
+
+              <a href="actualizar/{{ item.id }}" class="btn btn-sm btn-primary">Actualizar</a>
+              <a href="eliminar/{{ item.id }}" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+          </tr>
+        {% endfor %}  
+        </tbody>
+      </table>
+
+
+
+
+
+</div>
+
+{% endblock %}
