@@ -35,8 +35,9 @@
                             <td>{{ producto.descripcion }}</td>
                             <td>$ {{ producto.precio }}</td>
                             <td>{{ producto.fabricante.nombre }}</td>
-                            <td>{{ producto.f_vencimiento|date:"d/m/Y" }}</td>
+                            <td>{{ producto.f_vencimiento|date:"d / M / Y" }}</td>
                             <td>{{ producto.pais|default:"-" }}</td>
+                            {% if user.is_authenticated %}
                             <td>
                                 <div class="btn-group">
                                     <a href="{% url 'producto_update' producto.pk %}" class="btn btn-warning btn-sm">Editar
@@ -46,6 +47,14 @@
                                     </button>
                                 </div>
                             </td>
+                            {% endif %}
+                            <td>
+                                <a href="{% url 'producto-detail' producto.id %}" class="btn btn-info btn-sm">
+                                    <i class="fas fa-eye"></i> Ver
+                                </a>
+                                <!-- otros botones -->
+                            </td>
+                            
                         </tr>
                         <!-- Modal de confirmación de eliminación -->
                         <div class="modal fade" id="deleteModal{{ producto.id }}" tabindex="-1" aria-hidden="true">
