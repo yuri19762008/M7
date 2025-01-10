@@ -49,6 +49,40 @@
     <div class="container py-4">
         {% block content %}{% endblock %}
     </div>
+
+<!-- Footer con estilos inline -->
+<footer style="background-color: #198754; color: white; padding: 2rem 0; margin-top: 3rem; position: relative; bottom: 0; width: 100%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <h5 style="font-weight: 600;">Gestión de Productos</h5>
+                <p style="font-size: 0.9rem;">Sistema de administración de productos y fabricantes, no copiar ni distribuir.</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5 style="font-weight: 600;">Enlaces Rápidos</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'producto-list' %}" style="color: white; text-decoration: none; font-size: 0.9rem;">Productos</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'producto-create' %}" style="color: white; text-decoration: none; font-size: 0.9rem;">Agregar Producto</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5 style="font-weight: 600;">Contacto</h5>
+                <p style="font-size: 0.9rem;">
+                    <i class="fas fa-envelope"></i> info@gestionproductos.com<br>
+                    <i class="fas fa-phone"></i> +56 2 2997 8352
+                </p>
+            </div>
+        </div>
+        <hr style="border-color: white; margin: 1rem 0;">
+        <div class="text-center">
+            <p style="margin-bottom: 0; font-size: 0.9rem;">&copy; {% now  "Y" %} Gestión de Productos. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
