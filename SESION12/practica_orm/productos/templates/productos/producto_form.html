@@ -1,90 +1,98 @@
-{% extends 'base.html' %}
-
-{% block title %}
-    {% if form.instance.pk %}Editar{% else %}Nuevo{% endif %} Producto
-{% endblock %}
-
-{% block content %}
+{% extends 'base.html' %} {% block title %} {% if form.instance.pk %}Editar{%
+else %}Nuevo{% endif %} Producto {% endblock %} {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <a href="{% url 'producto-list' %}" class="btn btn-secondary">
-        Volver a la lista de productos
-    </a>
+  <a href="{% url 'producto-list' %}" class="btn btn-secondary">
+    Volver a la lista de productos
+  </a>
 </div>
-<div class="card shadow-sm" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #f8f9fa; padding: 20px; margin: 15px; border: 1px solid #e1e4e8;">
-    <div class="card-header bg-success text-white text-center">
-        <h2 class="mb-0">
-            <i class="fas {% if form.instance.pk %}fa-edit{% else %}fa-plus{% endif %}"></i>
-            {% if form.instance.pk %}Editar{% else %}Nuevo{% endif %} Producto
-        </h2>
-    </div>
-    <div class="card-body" >
-        <form method="post" class="needs-validation" novalidate>
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="id_nombre" class="form-label">Nombre *</label>
-                {{ form.nombre }}
-                {% if form.nombre.errors %}
-                    <div class="invalid-feedback d-block">{{ form.nombre.errors }}</div>
-                {% endif %}
-            </div>
+<div
+  class="card shadow-sm"
+  style="
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+    padding: 20px;
+    margin: 15px;
+    border: 1px solid #e1e4e8;
+  "
+>
+  <div class="card-header bg-success text-white text-center">
+    <h2 class="mb-0">
+      <i
+        class="fas {% if form.instance.pk %}fa-edit{% else %}fa-plus{% endif %}"
+      ></i>
+      {% if form.instance.pk %}Editar{% else %}Nuevo{% endif %} Producto
+    </h2>
+  </div>
+  <div class="card-body">
+    <form method="post" class="needs-validation" novalidate>
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="id_nombre" class="form-label">Nombre *</label>
+        {{ form.nombre }} {% if form.nombre.errors %}
+        <div class="invalid-feedback d-block">{{ form.nombre.errors }}</div>
+        {% endif %}
+      </div>
 
-            <div class="mb-3">
-                <label for="id_precio" class="form-label">Precio *</label>
-                {{ form.precio }}
-                {% if form.precio.errors %}
-                    <div class="invalid-feedback d-block">{{ form.precio.errors }}</div>
-                {% endif %}
-            </div>
+      <div class="mb-3">
+        <label for="id_precio" class="form-label">Precio *</label>
+        {{ form.precio }} {% if form.precio.errors %}
+        <div class="invalid-feedback d-block">{{ form.precio.errors }}</div>
+        {% endif %}
+      </div>
 
-            <div class="mb-3">
-                <label for="id_fabricante" class="form-label">Fabricante *</label>
-                {{ form.fabricante }}
-                {% if form.fabricante.errors %}
-                    <div class="invalid-feedback d-block">{{ form.fabricante.errors }}</div>
-                {% endif %}
-            </div>
+      <div class="mb-3">
+        <label for="id_fabricante" class="form-label">Fabricante *</label>
+        {{ form.fabricante }} {% if form.fabricante.errors %}
+        <div class="invalid-feedback d-block">{{ form.fabricante.errors }}</div>
+        {% endif %}
+      </div>
 
-            <div class="mb-3">
-                <label for="id_pais" class="form-label">País *</label>
-                {{ form.pais }}
-                {% if form.pais.errors %}
-                    <div class="invalid-feedback d-block">{{ form.pais.errors }}</div>
-                {% endif %}
-            </div>
+      <div class="mb-3">
+        <label for="id_pais" class="form-label">País *</label>
+        {{ form.pais }} {% if form.pais.errors %}
+        <div class="invalid-feedback d-block">{{ form.pais.errors }}</div>
+        {% endif %}
+      </div>
 
-            <div class="mb-3">
-                <label for="id_f_vencimiento" class="form-label">Fecha de Vencimiento *</label>
-                    <input type="date" 
-                        name="f_vencimiento" 
-                        id="id_f_vencimiento" 
-                        class="form-control"
-                        style="width: 16%;" 
-                        value="{{ form.instance.f_vencimiento|date:'Y-m-d' }}"
-                        required>
-                {% if form.f_vencimiento.errors %}
-                    <div class="invalid-feedback d-block">
-                        {{ form.f_vencimiento.errors }}
-                    </div>
-                {% endif %}
-            </div>
+      <div class="mb-3">
+        <label for="id_f_vencimiento" class="form-label"
+          >Fecha de Vencimiento *</label
+        >
+        <input
+          type="date"
+          name="f_vencimiento"
+          id="id_f_vencimiento"
+          class="form-control"
+          style="width: 16%"
+          value="{{ form.instance.f_vencimiento|date:'Y-m-d' }}"
+          required
+        />
+        {% if form.f_vencimiento.errors %}
+        <div class="invalid-feedback d-block">
+          {{ form.f_vencimiento.errors }}
+        </div>
+        {% endif %}
+      </div>
 
-            <div class="mb-3">
-                <label for="id_descripcion" class="form-label">Descripción *</label>
-                {{ form.descripcion }}
-                {% if form.descripcion.errors %}
-                    <div class="invalid-feedback d-block">{{ form.descripcion.errors }}</div>
-                {% endif %}
-            </div>
+      <div class="mb-3">
+        <label for="id_descripcion" class="form-label">Descripción *</label>
+        {{ form.descripcion }} {% if form.descripcion.errors %}
+        <div class="invalid-feedback d-block">
+          {{ form.descripcion.errors }}
+        </div>
+        {% endif %}
+      </div>
 
-            <div class="d-flex justify-content-end gap-2">
-                <a href="{% url 'producto-list' %}" class="btn btn-secondary">
-                    <i class="fas fa-times"></i> Cancelar
-                </a>
-                <button type="submit" class="btn btn-success">
-                    <i class="fas fa-save"></i> Guardar Cambios
-                </button>
-            </div>
-        </form>
-    </div>
+      <div class="d-flex justify-content-end gap-2">
+        <a href="{% url 'producto-list' %}" class="btn btn-secondary">
+          <i class="fas fa-times"></i> Cancelar
+        </a>
+        <button type="submit" class="btn btn-success">
+          <i class="fas fa-save"></i> Guardar Cambios
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock %}
