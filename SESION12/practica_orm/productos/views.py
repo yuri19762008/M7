@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+
 class ProductoListView(ListView):
     model = Producto
     template_name = 'productos/producto_list.html'
