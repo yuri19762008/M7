@@ -1,7 +1,23 @@
-<h1>Eliminar Laboratorio</h1>
-<p>¿Estás seguro que deseas eliminar el laboratorio "{{ object.nombre }}"?</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Confirmar</button>
-</form>
-<a href="{% url 'laboratorio_list' %}">Cancelar</a>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h3 class="card-title">Eliminar Laboratorio</h3>
+            </div>
+            <div class="card-body">
+                <p class="lead">¿Estás seguro que deseas eliminar el laboratorio "{{ object.nombre }}"?</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-danger">Confirmar eliminación</button>
+                        <a href="{% url 'laboratorio_list' %}" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

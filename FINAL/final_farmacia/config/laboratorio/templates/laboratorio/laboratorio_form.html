@@ -1,7 +1,34 @@
-<h1>{% if form.instance.pk %}Editar{% else %}Crear{% endif %} Laboratorio</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
-<a href="{% url 'laboratorio_list' %}">Volver a la lista</a>
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">{% if form.instance.pk %}Editar{% else %}Crear{% endif %} Laboratorio</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field|addclass:'form-control' }}
+                        {% if field.errors %}
+                        <div class="alert alert-danger mt-1">
+                            {{ field.errors }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a href="{% url 'laboratorio_list' %}" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
