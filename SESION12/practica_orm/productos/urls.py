@@ -14,4 +14,8 @@ urlpatterns = [
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('producto/<int:pk>/', ProductoDetailView.as_view(), name='producto-detail'),
+    # urls test 
+    path('producto/', ProductoListView.as_view(), name='producto-list'),
+    path('producto/<int:pk>/', ProductoDetailView.as_view(), name='mostrar-pro'),
+    path('producto/insertar/', ProductoCreateView.as_view(), name='insertar-pro'),
 ]

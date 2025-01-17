@@ -1,0 +1,11 @@
+<h1>Laboratorios</h1>
+<a href="{% url 'laboratorio_create' %}">Crear nuevo laboratorio</a>
+<ul>
+{% for laboratorio in object_list %}
+    <li>
+        {{ laboratorio.nombre }} - {{ laboratorio.ciudad }}, {{ laboratorio.pais }}
+        <a href="{% url 'laboratorio_update' laboratorio.pk %}">Editar</a>
+        <a href="{% url 'laboratorio_delete' laboratorio.pk %}">Eliminar</a>
+    </li>
+{% endfor %}
+</ul>
