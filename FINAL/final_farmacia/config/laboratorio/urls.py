@@ -1,7 +1,10 @@
 from django.urls import path
-from .views import LaboratorioListView, LaboratorioCreateView, LaboratorioUpdateView, LaboratorioDeleteView, ProductoListView, ProductoCreateView, ProductoUpdateView, ProductoDeleteView, DirectorListView, DirectorCreateView, DirectorUpdateView, DirectorDeleteView
+from .views import LaboratorioListView, LaboratorioCreateView, LaboratorioUpdateView, LaboratorioDeleteView, ProductoListView, ProductoCreateView, ProductoUpdateView, ProductoDeleteView, DirectorListView, DirectorCreateView, DirectorUpdateView, DirectorDeleteView, HomeView
 
 urlpatterns = [
+    #se agrega la url para el home
+    path('laboratorios', HomeView.as_view(), name='home'),
+    
     #se agregan las urls para el laboratorio
     path('', LaboratorioListView.as_view(), name='laboratorio_list'),
     path('create/', LaboratorioCreateView.as_view(), name='laboratorio_create'),

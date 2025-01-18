@@ -1,6 +1,17 @@
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy
 from .models import Laboratorio, Producto, DirectorGeneral
+
+# se agrega la clase para la vista home
+class HomeView(TemplateView):
+    template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['laboratorios'] = Laboratorio.objects.count()
+        context['productos'] = Producto.objects.count()
+        context['directores'] = DirectorGeneral.objects.count()
+        return context
 
 # se agregan las clases para el laboratorio
 class LaboratorioListView(ListView):
