@@ -2,7 +2,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Laboratorio, Producto, DirectorGeneral
 
-#se agregan las clases para el laboratorio
+# se agregan las clases para el laboratorio
 class LaboratorioListView(ListView):
     model = Laboratorio
     template_name = 'laboratorio/laboratorio_list.html'
@@ -25,7 +25,7 @@ class LaboratorioDeleteView(DeleteView):
     success_url = reverse_lazy('laboratorio_list')
 
 
-#se agrega la clase para el producto
+# se agrega la clase para el producto
 
 class ProductoListView(ListView):
     model = Producto
@@ -49,7 +49,7 @@ class ProductoDeleteView(DeleteView):
     template_name = 'producto/producto_confirm_delete.html'
     success_url = reverse_lazy('producto_list')
 
-#se agrega la clase para el director general
+# se agrega la clase para el director general
 
 class DirectorListView(ListView):
     model = DirectorGeneral
