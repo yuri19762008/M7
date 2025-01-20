@@ -1,125 +1,154 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <!-- Header con imagen de fondo -->
-<div class="p-5 mb-4 bg-light rounded-3 text-center" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-1.2.1') no-repeat center center; background-size: cover;">
-    <div class="container-fluid py-5 text-white">
-        <h1 class="display-4 fw-bold">Sistema de Gestión de Laboratorios</h1>
-        <p class="fs-4">Administración eficiente de laboratorios, productos y personal directivo</p>
-    </div>
+<div
+  class="p-5 mb-4 bg-light rounded-3 text-center"
+  style="
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-1.2.1')
+        no-repeat center center;
+    background-size: cover;
+  "
+>
+  <div class="container-fluid py-5 text-white">
+    <h1 class="display-4 fw-bold">Sistema de Gestión de Laboratorios</h1>
+    <p class="fs-4">
+      Administración eficiente de laboratorios, productos y personal directivo
+    </p>
+  </div>
 </div>
 
 <!-- Estadísticas -->
 <div class="row mb-4">
-    <div class="col-md-4">
-        <div class="card text-center bg-primary text-white mb-3">
-            <div class="card-body">
-                <h3 class="display-4">{{ laboratorios }}</h3>
-                <h5 class="card-title">Laboratorios</h5>
-            </div>
-        </div>
+  <div class="col-md-4">
+    <div class="card text-center bg-primary text-white mb-3">
+      <div class="card-body">
+        <h3 class="display-4">{{ laboratorios }}</h3>
+        <h5 class="card-title">Laboratorios</h5>
+      </div>
     </div>
-    <div class="col-md-4">
-        <div class="card text-center bg-success text-white mb-3">
-            <div class="card-body">
-                <h3 class="display-4">{{ productos }}</h3>
-                <h5 class="card-title">Productos</h5>
-            </div>
-        </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-center bg-success text-white mb-3">
+      <div class="card-body">
+        <h3 class="display-4">{{ productos }}</h3>
+        <h5 class="card-title">Productos</h5>
+      </div>
     </div>
-    <div class="col-md-4">
-        <div class="card text-center bg-info text-white mb-3">
-            <div class="card-body">
-                <h3 class="display-4">{{ directores }}</h3>
-                <h5 class="card-title">Directores</h5>
-            </div>
-        </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-center bg-info text-white mb-3">
+      <div class="card-body">
+        <h3 class="display-4">{{ directores }}</h3>
+        <h5 class="card-title">Directores</h5>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- Secciones Principales -->
 <div class="row mb-4">
-    <div class="col-md-4">
-        <div class="card h-100">
-            <div class="card-body text-center">
-                <i class="fas fa-flask fa-3x mb-3 text-primary"></i>
-                <h5 class="card-title">Gestión de Laboratorios</h5>
-                <p class="card-text">Administre la información de los laboratorios farmacéuticos, incluyendo ubicación y detalles operativos.</p>
-                <a href="{% url 'laboratorio_list' %}" class="btn btn-primary">Ir a Laboratorios</a>
-            </div>
-        </div>
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body text-center">
+        <i class="fas fa-flask fa-3x mb-3 text-primary"></i>
+        <h5 class="card-title">Gestión de Laboratorios</h5>
+        <p class="card-text">
+          Administre la información de los laboratorios farmacéuticos,
+          incluyendo ubicación y detalles operativos.
+        </p>
+        <a href="{% url 'laboratorio_list' %}" class="btn btn-primary"
+          >Ir a Laboratorios</a
+        >
+      </div>
     </div>
-    <div class="col-md-4">
-        <div class="card h-100">
-            <div class="card-body text-center">
-                <i class="fas fa-pills fa-3x mb-3 text-success"></i>
-                <h5 class="card-title">Control de Productos</h5>
-                <p class="card-text">Gestione el catálogo de productos, precios y fechas de fabricación de manera eficiente.</p>
-                <a href="{% url 'producto_list' %}" class="btn btn-success">Ir a Productos</a>
-            </div>
-        </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body text-center">
+        <i class="fas fa-pills fa-3x mb-3 text-success"></i>
+        <h5 class="card-title">Control de Productos</h5>
+        <p class="card-text">
+          Gestione el catálogo de productos, precios y fechas de fabricación de
+          manera eficiente.
+        </p>
+        <a href="{% url 'producto_list' %}" class="btn btn-success"
+          >Ir a Productos</a
+        >
+      </div>
     </div>
-    <div class="col-md-4">
-        <div class="card h-100">
-            <div class="card-body text-center">
-                <i class="fas fa-user-tie fa-3x mb-3 text-info"></i>
-                <h5 class="card-title">Directores Generales</h5>
-                <p class="card-text">Administre la información de los directores generales y sus especialidades.</p>
-                <a href="{% url 'director_list' %}" class="btn btn-info">Ir a Directores</a>
-            </div>
-        </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body text-center">
+        <i class="fas fa-user-tie fa-3x mb-3 text-info"></i>
+        <h5 class="card-title">Directores Generales</h5>
+        <p class="card-text">
+          Administre la información de los directores generales y sus
+          especialidades.
+        </p>
+        <a href="{% url 'director_list' %}" class="btn btn-info"
+          >Ir a Directores</a
+        >
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- Características del Sistema -->
 <div class="row">
-    <div class="col-md-6">
-        <div class="card mb-3">
-            <div class="card-header bg-dark text-white">
-                <h5 class="card-title mb-0">Características Principales</h5>
-            </div>
-            <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <i class="fas fa-check-circle text-success"></i>
-                        Gestión integral de laboratorios farmacéuticos
-                    </li>
-                    <li class="list-group-item">
-                        <i class="fas fa-check-circle text-success"></i>
-                        Control de productos y precios
-                    </li>
-                    <li class="list-group-item">
-                        <i class="fas fa-check-circle text-success"></i>
-                        Administración de personal directivo
-                    </li>
-                    <li class="list-group-item">
-                        <i class="fas fa-check-circle text-success"></i>
-                        Reportes y estadísticas
-                    </li>
-                </ul>
-            </div>
-        </div>
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-header bg-dark text-white">
+        <h5 class="card-title mb-0">Características Principales</h5>
+      </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <i class="fas fa-check-circle text-success"></i>
+            Gestión integral de laboratorios farmacéuticos
+          </li>
+          <li class="list-group-item">
+            <i class="fas fa-check-circle text-success"></i>
+            Control de productos y precios
+          </li>
+          <li class="list-group-item">
+            <i class="fas fa-check-circle text-success"></i>
+            Administración de personal directivo
+          </li>
+          <li class="list-group-item">
+            <i class="fas fa-check-circle text-success"></i>
+            Reportes y estadísticas
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="col-md-6">
-        <div class="card mb-3">
-            <div class="card-header bg-dark text-white">
-                <h5 class="card-title mb-0">Información Adicional</h5>
-            </div>
-            <div class="card-body">
-                <p class="card-text">
-                    Nuestro sistema de gestión proporciona una solución completa para la administración de laboratorios farmacéuticos, 
-                    permitiendo un control eficiente de:
-                </p>
-                <div class="d-grid gap-2">
-                    <button class="btn btn-outline-primary" type="button">
-                        <i class="fas fa-download"></i> Descargar Manual de Usuario
-                    </button>
-                    <button class="btn btn-outline-secondary" type="button">
-                        <i class="fas fa-question-circle"></i> Soporte Técnico
-                    </button>
-                </div>
-            </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-header bg-dark text-white">
+        <h5 class="card-title mb-0">Información Adicional</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          Nuestro sistema de gestión proporciona una solución completa para la
+          administración de laboratorios farmacéuticos, permitiendo un control
+          eficiente de:
+        </p>
+        <div class="d-grid gap-2">
+          <a
+            href="https://github.com/yuri19762008/M7/blob/main/FINAL/FINAL%20DRILLING_007.pdf"
+            class="btn btn-outline-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fas fa-download"></i> Drilling Final Modulo 7 PDF
+          </a>
+          <button class="btn btn-outline-secondary" type="button">
+            <i class="fas fa-question-circle"></i> Soporte Técnico
+          </button>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}
