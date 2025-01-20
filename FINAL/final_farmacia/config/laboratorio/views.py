@@ -1,16 +1,18 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy
 from .models import Laboratorio, Producto, DirectorGeneral
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # se agrega la clase para la vista home
-class HomeView(TemplateView):
+class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'home.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['laboratorios'] = Laboratorio.objects.count()
-        context['productos'] = Producto.objects.count()
-        context['directores'] = DirectorGeneral.objects.count()
+        if self.request.user.is_authenticated:
+            context['laboratorios'] = Laboratorio.objects.count()
+            context['productos'] = Producto.objects.count()
+            context['directores'] = DirectorGeneral.objects.count()
         return context
 
 # se agregan las clases para el laboratorio

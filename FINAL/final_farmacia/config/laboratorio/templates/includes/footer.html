@@ -8,39 +8,24 @@
           Yuri Urzua Lebuy con Django y Bootstrap.
         </p>
       </div>
-      <div class="col-md-4">
-        <h5>Enlaces Rápidos</h5>
-        <ul class="list-unstyled">
-          <li>
-            <a
-              href="{% url 'laboratorio_list' %}"
-              class="text-decoration-none text-white"
-              >Laboratorios</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'producto_list' %}"
-              class="text-white text-decoration-none"
-              >Productos</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'director_list' %}"
-              class="text-white text-decoration-none"
-              >Directores</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'admin:index' %}"
-              class="text-decoration-none text-white"
-              >Administración</a
-            >
-          </li>
-        </ul>
-      </div>
+<!-- codicion del footer para mostrar los enlaces si el usuario esta autenticado -->
+       <div class="col-md-4 text-white">
+                <h5>Enlaces Rápidos</h5>
+                {% if user.is_authenticated %}
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'laboratorio_list' %}" class=" text-decoration-none text-white">Laboratorios</a></li>
+                    <li><a href="{% url 'producto_list' %}" class="text-white text-decoration-none">Productos</a></li>
+                    <li><a href="{% url 'director_list' %}" class="text-white text-decoration-none">Directores</a></li>
+                    <li><a href="{% url 'admin:index' %}" class="text-white text-decoration-none">Administración</a></li>
+                </ul>
+                {% else %}
+                <ul class="list-unstyled">
+                    <li class="text-white">Inicia sesión para acceder a la Información</li>
+                    <li><a href="{% url 'login' %}" class="text-white text-decoration-none">Iniciar Sesión</a></li>
+                    <li><a href="{% url 'register' %}" class="text-white text-decoration-none">Registrarse</a></li>
+                </ul>
+                {% endif %}
+            </div>
       <div class="col-md-4">
         <h5>Contacto</h5>
         <ul class="list-unstyled">
